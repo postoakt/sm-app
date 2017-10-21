@@ -99,4 +99,13 @@
 			return count($data);
 		}
 		
+		function has_uploaded_photo($userid) {
+			$query = "SELECT * FROM users "
+			       . "WHERE id =" . $userid . " "
+			       . "AND prof_pic='default.jpg'";
+			$this->db->query($query);
+			$result = $this->db->get()->result();
+			return count($data) > 0;
+		}
+		
 	}
