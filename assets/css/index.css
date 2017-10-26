@@ -13,6 +13,11 @@ body{
 	font-family: SourceSans;
 }
 
+a{
+	text-decoration: unset;
+	color: unset;
+}
+
 input[type="text"], input[type="password"]{
 	border-radius: 2px;
     border: 1px solid #bbb;
@@ -46,6 +51,22 @@ input[type="text"], input[type="password"]{
     border-radius: 3px;
     padding: 4px;
     border: 1px solid #fa7c7c;
+}
+
+#login-success-wrapper{
+	text-align: center;
+}
+
+.simple-box{
+	display: inline-block;
+    margin: 0 auto;
+    margin-top: 64px;
+    width: 512px;
+    padding: 16px 8px;
+    border: 2px dashed green;
+    text-align: center;
+    background-color: #fff;
+    color: #1b891b;
 }
 
 #header-container{
@@ -158,9 +179,12 @@ input[type="text"], input[type="password"]{
     margin: 0 auto;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     padding: 0px 24px;
     background-color: #fff;
     color: #333;
+    margin-bottom: 32px;
+    min-height: 768px;
 }
 
 #welcome-container{
@@ -182,14 +206,26 @@ input[type="text"], input[type="password"]{
 	display: inline-block;
     width: 300px;
     float: right;
+    border-bottom: 1px solid #efefef;
+    padding: 12px;
 }
 
 .submit-post-btn{
 	margin-left: 16px;
+	margin-top: 6px;
     display: inline-block;
     padding: 2px 20px;
     border: 1px solid #494176;
     background-color: #3610ff;
     cursor: pointer;
     color: #efefef;
+}
+
+#blank-space{
+    display: inline-block;
+    width: 696px;
+    height: 64px;
+    background-color: #efefef;
+    position: relative;
+    right: 26px;
 }

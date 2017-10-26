@@ -6,16 +6,23 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
         $this->load->helper("url");	
+		$this->load->library("session");
 	}
 	
 	public function index()
 	{
 		$data = array("login_fail" => false);
 		$this->load->view("login_page", $data);
+		if($this->session->userdata("id") !== FALSE){
+			redirect(base_url() . "home");
+		} 
 	}
 	
 	public function login_user()
 	{
+		if($this->session->userdata("id") !== FALSE){
+			redirect(base_url() . "home");
+		} 
 		$this->load->model("user_m");
 		$email = $this->input->post("email");
 		$password = $this->input->post("password");

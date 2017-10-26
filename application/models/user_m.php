@@ -10,14 +10,30 @@
 		}
 		
 		function validate_user($email, $password) {
+			$salt = $this->get_user_salt($email);
+			if ($salt !== FALSE){
+				$this->db->from("users");
+	        	$this->db->where("email", $email);
+	        	$this->db->where( "pw_hash", sha1($password . $salt));
+		        $login = $this->db->get()->result();
+	
+				if (is_array($login) && count($login) == 1) {
+					$this->user_data = $login[0];
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		function get_user_salt($email) {
+			$this->db->select("pw_salt");
 			$this->db->from("users");
-        	$this->db->where("email", $email);
-        	$this->db->where( "pw_hash", sha1($password));
-	        $login = $this->db->get()->result();
+			$this->db->where("email", $email);
+			$data = $this->db->get()->result();
+			
+			if (is_array($data) && count($data) == 1){
 
-			if (is_array($login) && count($login) == 1) {
-				$this->user_data = $login[0];
-				return true;
+				return $data[0]->pw_salt;
 			}
 			return false;
 		}
@@ -43,7 +59,8 @@
 		  $data["last_name"] = $userdata["last_name"];
 		  $data["email"] = $userdata["email"];
 		  $data["url_slug"] = $userdata["url_slug"];
-		  $data["pw_hash"] = sha1($userdata["password"]);
+		  $data["pw_salt"] = $userdata["salt"];
+		  $data["pw_hash"] = sha1($userdata["password"] . $userdata["salt"]);
 		  return $this->db->insert('users', $data);
 		}
 		
@@ -72,7 +89,7 @@
 		}
 		
 		function unset_session(){
-			session_destroy();
+			$this->session->sess_destroy();
 		}
 		
 		function update_info($userdata) {

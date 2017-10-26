@@ -4,10 +4,14 @@ class Home extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
-        $this->load->helper("url");		
+        $this->load->helper("url");
+		$this->load->library("session");	
 	}
 	
 	public function index(){
+		if($this->session->userdata("id") === FALSE){
+			redirect(base_url());
+		} 
 		$this->load->library("session");
 		$user_id = $this->session->userdata("id");
 		$this->load->model("user_m");
@@ -16,4 +20,5 @@ class Home extends CI_Controller {
 		$prof_pic = $this->user_m->get_prof_pic($user_id);
 		$this->load->view("home", $data);	
 	}
+
 }

@@ -9,10 +9,12 @@
 	<body>
 		<div id="header-container">
 			<div id="header-wrapper">
-				<div id="header-icon-and-search">
-					<i id="header-icon" class="fa fa-users" aria-hidden="true"></i>
-					<div id="header-app-title">Social Media App</div>
-				</div>
+				<a href="<?php echo base_url(); ?>">
+					<div id="header-icon-and-search">
+						<i id="header-icon" class="fa fa-users" aria-hidden="true"></i>
+						<div id="header-app-title">Social Media App</div>
+					</div>
+				</a>
 			</div>
 		</div> 
 		<div id="register-form-container">
@@ -30,7 +32,7 @@
 				<input type="text" id="last_name" name="last_name">
 				<input type="submit" value="Register">
 			</form>
-			<div class="register-btn">Already have an account? <a href="<?php echo base_url() ?>login">Login</a></div>
+			<div class="register-btn">Already have an account? <a href="<?php echo base_url() ?>login" style="color:blue;">Login</a></div>
 		</div
 	</body>
 </html>

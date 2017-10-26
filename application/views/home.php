@@ -5,6 +5,8 @@
 		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/index.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		<script src="<?php echo base_url(); ?>assets/js/jquery-2.1.4.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/index.js"></script>
 	</head>
 	<body>
 		<div id="header-container">
@@ -49,9 +51,10 @@
 				</div>
 				<div id="create-post-text-container">
 					<textarea id="create-post-textarea" placeholder="What's on your mind?"></textarea>
-					<div></div><div class="submit-post-btn">Submit Post</div></div>
+					<div><div class="submit-post-btn" onclick="submit_post()">Submit Post</div></div>
 				</div>			
 			</div>
+			<div id="blank-space"></div>
 			<div id="posts-container">
 				
 			</div>

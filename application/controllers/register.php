@@ -5,7 +5,12 @@ class Register extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-        $this->load->helper("url");	
+        $this->load->helper("url");
+		$this->load->helper("utility");
+		$this->load->library("session");
+		if($this->session->userdata("id") !== FALSE){
+			redirect(base_url() . "home");
+		} 
 	}
 	
 	public function index()
@@ -17,6 +22,7 @@ class Register extends CI_Controller {
 		$this->load->model("user_m");
 		$email = $this->input->post("email");
 		$password = $this->input->post("password");
+		$salt = generateRandomString();
 		$first_name = $this->input->post("first_name");
 		$last_name = $this->input->post("last_name");
 		$url_slug = strtolower($first_name) . "." . strtolower($last_name);
@@ -26,7 +32,7 @@ class Register extends CI_Controller {
 		}
 		else{
 			$user_data = array("first_name" => $first_name, "last_name" => $last_name, 
-			                   "email" => $email, "password" =>$password, "url_slug" => $url_slug);
+			                   "email" => $email, "password" =>$password, "salt" => $salt, "url_slug" => $url_slug);
 			if ($this->user_m->new_user($user_data)){
 				$this->load->view("register_success", $user_data);
 			}

@@ -9,10 +9,12 @@
 	<body>
 		<div id="header-container">
 			<div id="header-wrapper">
-				<div id="header-icon-and-search">
-					<i id="header-icon" class="fa fa-users" aria-hidden="true"></i>
-					<div id="header-app-title">Social Media App</div>
-				</div>
+				<a href="<?php echo base_url(); ?>">
+					<div id="header-icon-and-search">
+						<i id="header-icon" class="fa fa-users" aria-hidden="true"></i>
+						<div id="header-app-title">Social Media App</div>
+					</div>
+				</a>
 			</div>
 		</div> 
 		<div id="login-form-container">
@@ -24,7 +26,7 @@
 				<input type="password" id="password" name="password">
 				<input type="submit" value="Log In">
 			</form>
-			<div class="register-btn">Don't have an account? <a href="<?php echo base_url(); ?>register">Register</a></div>
+			<div class="register-btn">Don't have an account? <a href="<?php echo base_url(); ?>register" style="color:blue;">Register</a></div>
 		</div>
 		<?php 
 			if ($login_fail){
